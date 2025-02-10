@@ -29,10 +29,11 @@ class SelfAttention(nn.Module):
         k = k.view(intermim_shape).transpose(1, 2)
         v = v.view(intermim_shape).transpose(1, 2)
 
-        # (Batch_Size, H, Seq_Len, Seq_Len)
+        # (Batch_Size, H, Seq_Len, Dim / H) @ (Batch_Size, H, Dim / H, Seq_Len) -> (Batch_Size, H, Seq_Len, Seq_Len)
         weight = q @ k.transpose(-1, -2)
 
         if causal_mask:
+            # Mask where the upper triangle (above the principal diagonal) is 1
             mask = torch.ones_like(weight, dtype=torch.bool).triu(1)
             weight.masked_fill_(mask, -torch.inf)
 

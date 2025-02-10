@@ -72,7 +72,7 @@ class CLIP(nn.Module):
 
         self.layernorms = nn.LayerNorm(768)
     
-    def forward(self, tokens: torch.LongTensor) -> torch.FloatTensorL:
+    def forward(self, tokens: torch.LongTensor) -> torch.FloatTensor:
         tokens = tokens.type(torch.long)
 
         # (Batch_Size, Seq_Len) -> (Batch_Size, Seq_Len, Dim)
