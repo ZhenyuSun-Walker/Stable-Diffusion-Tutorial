@@ -167,7 +167,7 @@ class UNET(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.encoders = nn.ModuleList([
+        self.encoders = nn.Module([
             # (Batch_Size, 4, Height / 8, Width / 8)
             SwitchSequential(nn.Conv2d(4, 320, kernel_size=3, padding=1)),
 
